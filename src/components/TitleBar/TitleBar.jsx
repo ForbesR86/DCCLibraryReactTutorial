@@ -2,15 +2,15 @@ import React from 'react';
 import './TitleBar.css';
 
 function TitleBar(props) {
-    return (
+    return(
         <div className="row row-space">
-            <div className="col-md-12" style={{ padding: 0 }}>
+            <div className="col-md-12" style={{ padding:0}}>
                 <div className="titlebar-nav">
-                    <h1>dCC Library</h1>
+                <h1>Randy Forbes</h1>
                 </div>
             </div>
         </div>
-    )
+            )
 }
 
 export default TitleBar;

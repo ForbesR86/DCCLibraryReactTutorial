@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import './App.css'
-import TitleBar from './TitleBar/TitleBar';
-import BookViewer from './BookViewer/BookViewer';
-import BookCreator from './BookCreator/BookCreator';
+import React, {Component} from "react";
+import './App.css';
+import TitleBar from './TitleBar/TitleBar.jsx';
 
 class App extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
         this.books = [
-            { title: "Ready Player One", author: "Ernest Cline" },
-            { title: 'All the Light We Cannot See', author: 'Anthony Doerr' },
-            { title: 'The First and Last Freedom', author: 'Jiddu Krishnamurit' }
+            {title: "Ready Player One", author: "Ernest Cline"},
+            {title: "All the Light we cannot see", author: "Anthony Doerr"},
+            {title: "The First and Last Freedom", author: "Jiddu Kris"}
         ];
         this.state = {
             bookNumber: 0
@@ -20,7 +18,7 @@ class App extends Component {
     goToNextBook = () => {
         let tempBookNumber = this.state.bookNumber;
         tempBookNumber++;
-        if (tempBookNumber === this.books.length) {
+        if(tempBookNumber === this.books.length){
             tempBookNumber = 0;
         }
         this.setState({
@@ -31,7 +29,7 @@ class App extends Component {
     goToPreviousBook = () => {
         let tempBookNumber = this.state.bookNumber;
         tempBookNumber--;
-        if (tempBookNumber < 0) {
+        if(tempBookNumber < 0){
             tempBookNumber = this.books.length - 1;
         }
         this.setState({
@@ -39,23 +37,32 @@ class App extends Component {
         });
     }
 
-    createBook = (newBook) => {
-        console.log('From the createBook on App component', newBook);
-        this.books.push(newBook);
-        this.setState({
-            bookNumber: this.books.length - 1
-        })
-    }
-
     render() {
-        return (
+        return(
             <div className="container-fluid">
-                <TitleBar />
-                <BookViewer book={this.books[this.state.bookNumber]} nextBook={this.goToNextBook} previousBook={this.goToPreviousBook} />
-                <BookCreator createNewBook={this.createBook} />
+            < TitleBar />
+
+            <div className="row">
+                <div className="col-md-4">
+                <button onClick={this.goToPreviousBook}>Previous book</button>
+                </div>
+
+                <div className="col-md-4">
+                    <h1>{this.books[this.state.bookNumber].title}</h1>
+                    <h4>{this.books[this.state.bookNumber].author}</h4>
+                </div>
+
+                <div className="col-md-4">
+                    <button onClick={this.goToNextBook}>Next book</button>
+                </div>
+
+
+            </div>
+            
             </div>
         )
     }
+
 }
 
 export default App;
